@@ -76,6 +76,8 @@ header{
 }
 
 .logo{
+	margin-top: 15px;
+	padding: 0;
 	
 }
 
@@ -83,7 +85,8 @@ nav{
 	width: 100%;
 	position: fixed;
 	box-shadow: 0 0 15px 0 rgba(0,0,0,0.9);
-	
+	margin: 0;
+	z-index: 9999;
 }
 
 .nav1{
@@ -115,7 +118,7 @@ nav{
 
  nav .links a{
  	display: inline-block;
- 	padding: 5px 0;
+ 	padding: 7px 0;
  	margin-right: 15px;
  	font-size: 16px;
  	font-weight: 300;
@@ -129,7 +132,7 @@ nav .links a:hover{
 	transition: 0.6s;
 }
 
-.logo, .logo img{height:80px;}
+.logo, .logo img{height:75px;}
 
 .icon{
 	display: none;
@@ -241,6 +244,9 @@ nav .links a:hover{
 	background: rgba(224,73,87,0.9);
 	
 	transform: translateY(100%);
+	
+
+	
 	transition: all 0.35s ease-in;
 }
 
@@ -248,7 +254,6 @@ nav .links a:hover{
 
 .service-hub:hover .service-hub-information{
 	transform: translateY(0%);
-	
 }
 
 
@@ -338,6 +343,7 @@ nav .links a:hover{
 
 /*Top*/
 
+/*
 .all-contact{
 	max-width: 700px;
 	margin: auto;
@@ -429,6 +435,124 @@ nav .links a:hover{
 	padding: 0.2em;
 }
 */
+
+/*Contact Form Container*/
+.contact-form-wrapper{
+	width: 875px;
+	height: 500px;
+	margin: 50px auto; 
+	background: white;
+	display: flex;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+}
+
+
+/*Background Image Styling*/
+.info-container{
+	width: 45%;
+	position: relative;
+	
+	background: url(images/contact.jpeg);
+	background-attachment: scroll;
+	background-position: center;
+	background-size: cover;
+	
+	
+}
+
+/*Contact Form Fields*/
+.contact-container form{
+	width: 38%;
+	padding: 0px 40px;
+	
+}
+
+.contact-form h3{
+	font-size: 25px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.contact-form form p{
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+}
+
+.contact-form form label{
+	font-weight: 600;
+}
+
+.contact-form form input,
+.contact-form form textarea{
+	width: 100%;
+	padding: 8px 0px 5px;
+	margin-bottom: 18px;
+
+	border: none;
+	border-bottom: 1px solid rgba(224,73,87,0.9);
+
+	font-family: 'Montserrat';
+	color: black;
+	font-size: 14px;
+	font-weight: 450;
+}
+
+.contact-form form textarea{
+	min-width: 100%;
+	max-width: 100%;
+	max-height: 110px;
+	min-height: 100px;
+}
+
+.contact-form form button{
+	width: 150px;
+	background: rgba(224,73,87,0.9);
+	padding: 10px;
+	border: none;
+	border-radius: 25px;
+	
+	align-self: flex-end;
+	
+	font-family: "Montserrat";
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	
+	
+}
+
+.contact-form form button:hover{
+	background: black;
+	color: white;
+}
+
+:focus{
+	outline: none;
+}
+
+/*Error Window Styling*/
+
+ .val-wrap{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.7);
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+ }
+
+
 
 
 
