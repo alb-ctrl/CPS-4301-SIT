@@ -1,5 +1,6 @@
 <?php 
 
+//starts sesion and checks if user has logged in
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
@@ -77,7 +78,9 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
                 <tbody id="ticket_body">
 	
 	<?php 
-
+// prints the customer name, subject, status and cost of tickets 
+// with the abiltiy to expand the information and see the complete ticket
+// once the information is expanded the user has the ability to update or delete the ticket			
      $res='';
      while($row = mysqli_fetch_array($result)){
      echo '			<tr>
