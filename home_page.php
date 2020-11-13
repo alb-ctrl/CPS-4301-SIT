@@ -1,4 +1,5 @@
 <?php 
+//checks if user has legged in, if not is directed to login page
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
