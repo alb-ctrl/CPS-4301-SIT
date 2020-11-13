@@ -1,10 +1,12 @@
 <?php
+//checks if user has legged in, if not is sent to the login page
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
 	die (); 
 	}
-	
+
+//if user has subbmited a form to get here
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	//require DB
@@ -16,16 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //set encoding 
 	mysqli_set_charset($dbc, 'utf8');
 	$output = '';
-
+	
+	//sets a query and values and creates a query from the values that exists
+	//if a value is empty or is not set the value is not added into the querry
 	$query = "insert into customers (email";
 	$values = "(";
 	
-	
+	//if email exists
 	if (isset ($_POST['email'])){
 		$email = mysqli_real_escape_string($dbc, $_POST["email"]);
 		$values = $values . " '$email' ";
 	}
 	
+	//if name is not empty
 	if (!empty($_POST['name'])){
 		$name = mysqli_real_escape_string($dbc, $_POST["name"]);
 		$query = $query . ",name"; 
@@ -37,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$values = $values . ")";
 	$query = $query . ") values" . $values;
 	
-	
+	// finishes the query and inserts the customer into the customer table
 	if (mysqli_query($dbc, $query)){
 		$last_id = mysqli_insert_id($dbc);
 		
@@ -47,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		die();
 	} 
 	
+	//creates a query and the values to insert into from user input
+	//if a value is empty or is not set the value is not added into the query
 	$query = "insert into tickets (customer";
 	$values = "(".$last_id ;
 	if (!empty($_POST['subject'])){
@@ -80,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$values = $values . ")";
 	$query = $query . ") values" . $values;
 	
-	
+	//creates a ticket and inserts it into the ticket table
 	if (mysqli_query($dbc, $query)){
 	//	echo "tickets succesfully created";
 		
