@@ -1,5 +1,6 @@
 <?php 
 
+//checks if user has logged in
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
@@ -27,7 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	
 	}
-	
+
+//gets ticket id and the databse connection as input and prints the information 
+//the ticket information is printed in a modal table 
+//the information is also in a form to give the user the avility to updaate the information
 function view_data($dbc, $ticket_id){
 
 	 $output = '';
@@ -105,7 +109,7 @@ function view_data($dbc, $ticket_id){
 }
 
 //        
-
+// these functions are not used in this file
 function delete_ticket($dbc, $ticket_id){
 	$query = "delete from tickets where ticket_id = $ticket_id";
 	$result = mysqli_query ($dbc, $query);
