@@ -1,5 +1,4 @@
 <?php
-//starts session and checks if user has logged in
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
@@ -8,10 +7,12 @@ if (!isset(($_SESSION['id']))){
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR 
+require ("db_config.php");
+	
+	$dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR 
 	die('Coul not connect MySQL: ' . mysqli_connect_error () );
 
-//set encoding 
+	//set encoding 
 	mysqli_set_charset($dbc, 'utf8');
 	
 	
@@ -19,7 +20,7 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
 	update_ticket($dbc, $_POST['update_ticket']);
 }
 
-//function to update ticket id 
+
 function update_ticket ($dbc, $ticket_id){
 
 	
@@ -32,7 +33,7 @@ function update_ticket ($dbc, $ticket_id){
 		$query = $query . " '$email' "; 
 		
 	
-	//checks if values are set or empty to update them in the dB
+	
 	if (!empty($_POST['name'])){
 		$name = mysqli_real_escape_string($dbc, $_POST["name"]);
 		$query = $query . ", customers.name = '$name'"; 

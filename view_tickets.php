@@ -1,21 +1,28 @@
 <?php 
 
-//starts sesion and checks if user has logged in
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
 	die (); 
 } 
 
 
-$dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR 
+require ("db_config.php");
+	
+	$dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR 
 	die('Coul not connect MySQL: ' . mysqli_connect_error () );
 
-//set encoding 
+	//set encoding 
 	mysqli_set_charset($dbc, 'utf8');
-	$output = '';
 	
+	$output = '';
+	$where ='';
+	if (isset ($_POST['query'])){
 	$where = $_POST['query'];
+	}
 	$query = "select * from Vtickets $where order by created_at desc";
 	$result = mysqli_query ($dbc, $query);
 	if (!$result){
@@ -26,6 +33,9 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
 	
 	
 	?>
+
+    
+    
 	
 	<div class="container-xl">
     <div class="table-responsive">
@@ -40,17 +50,19 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
             </div>
             <div class="table-filter">
                 <div class="row">
-                    
-                    <div class="col-sm-9">
-                        <button type="button" id="search_ticket_button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                        <div class="filter-group">
-                            <label>Name</label>
-                            <input type="text" id="search_ticket_name" class="form-control">
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label>Status</label>
-                            <select name="ticket_status" id="ticket_status" class="form-control">
+	
+	<div class="col-sm-6">
+		
+		<div class="filter-group">
+		<button type="button" id="search_ticket_button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+			<label>Name</label> 
+			<input type="text" id="search_ticket_name" class="form-control">
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="filter-group">
+			<label>Status</label> 
+			<select name="ticket_status" id="ticket_status" class="form-control">
                                 <option>Any</option>
                                 <option value="New">New</option>  
       							<option value="Work_In _Progress">Work In Progress</option>
@@ -58,10 +70,13 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
       							<option value="Completed">Completed</option>
       							<option value="Canceled">Canceled</option>
                             </select>
-                        </div>
-                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                    </div>
-                </div>
+		</div>
+		<span class="filter-icon"><i class="fa fa-filter"></i></span> 
+	</div>
+	<div class="col-sm-2 float-right">
+		<button data-dismiss="modal" data-toggle="modal" data-target="#insertTicket" type="button" class="btn btn-warning" style="background-color:#C95C54; color: white;" >Ticket <i class="fa fa-plus pr-2" aria-hidden="true"></i></button> 
+	</div>
+</div>
             </div>
             <table class="table table-striped table-hover">
                 <thead>
@@ -78,13 +93,17 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
                 <tbody id="ticket_body">
 	
 	<?php 
-// prints the customer name, subject, status and cost of tickets 
-// with the abiltiy to expand the information and see the complete ticket
-// once the information is expanded the user has the ability to update or delete the ticket			
+
      $res='';
      while($row = mysqli_fetch_array($result)){
+     if (!empty($row['ticket_number'])){
+        $ticket_num = $row['ticket_number']  ;   
+         }
+    else {
+    	$ticket_num = $row['ticket_id']  ; 
+    }
      echo '			<tr>
-                        <td>1</td>
+                        <td>'. $ticket_num .' </td>
                         <td>'. $row['name'] .'</td>
                         <td>' . $row['subject'] . '</td>';
                         
@@ -108,7 +127,7 @@ $dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR
     }
     
     echo '
-                        <td><span class="status text-'.$res.'">&bull;</span>'. $row['status'] . '</td>
+                        <td><span class="status text-'.$res.'">&bull;</span>'.str_replace('_', ' ', $row['status'])  . '</td>
                         <td>$'. $row['cost'] .'</td>
                          <td><a href="#" id='. $row["ticket_id"] .' class="view view_data" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>';

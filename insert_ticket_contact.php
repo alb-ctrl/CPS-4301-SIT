@@ -1,10 +1,5 @@
 <?php
-session_start();
-if (!isset(($_SESSION['id']))){
-	header('LOCATION:Login.html');
-	die (); 
-	}
-	
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	//require DB
@@ -15,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	//set encoding 
 	mysqli_set_charset($dbc, 'utf8');
+	
+	
 	$output = '';
 
 	$query = "insert into customers (email";
@@ -24,12 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset ($_POST['email'])){
 		$email = mysqli_real_escape_string($dbc, $_POST["email"]);
 		$values = $values . " '$email' ";
-	}
-	
-	if (!empty($_POST['name'])){
-		$name = mysqli_real_escape_string($dbc, $_POST["name"]);
-		$query = $query . ",name"; 
-		$values = $values . ", '$name' ";
 	}
 
 	
@@ -55,17 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$values = $values . ", '$subject' ";
 	}
 	
-	if (!empty($_POST['number'])){
-		$number = mysqli_real_escape_string($dbc, $_POST["number"]);
-		$query = $query . ",ticket_number"; 
-		$values = $values . ", '$number' ";
-	}
-
-	if (!empty ($_POST['schedule'])){
-		$schedule = mysqli_real_escape_string($dbc, $_POST["schedule"]);
-		$query = $query . ",scheduled"; 
-		$values = $values . ", '$schedule' ";
-	}
 	if (!empty($_POST['status'])){
 		$status = mysqli_real_escape_string($dbc, $_POST["status"]);
 		$query = $query . ",status"; 
@@ -82,11 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$query = $query . ",description"; 
 		$values = $values . ", '$description' ";
 	}
-	if (!empty ($_POST['cost'])){
-		$cost = mysqli_real_escape_string($dbc, $_POST["cost"]);
-		$query = $query . ",cost"; 
-		$values = $values . ", $cost ";
-	}
+
 	
 	$values = $values . ")";
 	$query = $query . ") values" . $values;

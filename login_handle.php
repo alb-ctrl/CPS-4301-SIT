@@ -4,13 +4,13 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	//require DB
-	//require ("dbconfig.php");
+	require ("db_config.php");
 	
-	$dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR 
-die('Coul not connect MySQL: ' . mysqli_connect_error () );
+	$dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR 
+	die('Coul not connect MySQL: ' . mysqli_connect_error () );
 
-//set encoding 
-mysqli_set_charset($dbc, 'utf8');
+	//set encoding 
+	mysqli_set_charset($dbc, 'utf8');
 
 	$user=$_POST['form-username'];
 	$pass=$_POST['form-password'];
@@ -18,7 +18,7 @@ mysqli_set_charset($dbc, 'utf8');
 	//validates user name
 	if (empty($user)) {
 		echo "There was a problem with your username, Try again";
-		sleep(3);
+		//sleep(3);
 		//header('LOCATION:Login.html');
 		exit (); 
 	 }
@@ -28,7 +28,7 @@ mysqli_set_charset($dbc, 'utf8');
 	//validate passwrod
 	if (empty($pass)){
 		echo "There was a problem with your Login, Try again";
-		sleep(3);
+		//sleep(3);
 		//header('LOCATION:Login.html');
 		exit (); 
 	}
@@ -43,14 +43,14 @@ mysqli_set_charset($dbc, 'utf8');
 	if ($num==0)
 	{
 		echo "<br>Username $u not found";
-		sleep(3);
+		//sleep(3);
 		//header('LOCATION:Login.html');
 		exit (); 
 	}
 	elseif ($num>1)
 	{
 		echo "<br>More than one user with $u";
-		sleep(3);
+		//sleep(3);
 		//header('LOCATION:Login.html');
 		exit (); 
 	}
@@ -60,7 +60,7 @@ mysqli_set_charset($dbc, 'utf8');
 	if ($u==$row['user_login'] and hash('sha256', $p) != $row['password'])
 	{
 		echo "<br>Password doesnt match to usernmae";
-		sleep(3);
+		//sleep(3);
 		//header('LOCATION:Login.html');
 		exit (); 
 	}
@@ -83,8 +83,8 @@ mysqli_set_charset($dbc, 'utf8');
 		$_SESSION['name'] = $row['name'];
 		
 		mysqli_free_result($run);
-		header('LOCATION:home_page.php');
-		echo "it worked";
+		//header('LOCATION:home_page.php');
+		echo "loggedin";
 		
 	}
 
