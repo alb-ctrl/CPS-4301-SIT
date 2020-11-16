@@ -1,6 +1,5 @@
 <?php 
 
-//checks if user has logged in
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
@@ -11,12 +10,12 @@ if (!isset(($_SESSION['id']))){
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	//require DB
-	//require ("dbconfig.php");
+	require ("db_config.php");
 	
-	$dbc = @mysqli_connect('localhost', 'registra', 'tion', 'sit') OR 
+	$dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR 
 	die('Coul not connect MySQL: ' . mysqli_connect_error () );
 
-//set encoding 
+	//set encoding 
 	mysqli_set_charset($dbc, 'utf8');
 	
 	
@@ -28,10 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	
 	}
-
-//gets ticket id and the databse connection as input and prints the information 
-//the ticket information is printed in a modal table 
-//the information is also in a form to give the user the avility to updaate the information
+	
 function view_data($dbc, $ticket_id){
 
 	 $output = '';
@@ -61,7 +57,7 @@ function view_data($dbc, $ticket_id){
     		<td width ='30%'><label>Status</label></td>
     		<td width ='70%'>
     		<select name='status' id='status' class='form-control'>
-      <option value='".$row['status']."'>".$row['status']."</option>  
+      <option value='".$row['status']."'>". str_replace('_', ' ', $row['status']) ."</option>  
       <option value='New'>New</option>  
       <option value='Work_In _Progress'>Work In Progress</option>
       <option value='On_Hold'>On Hold</option>
@@ -109,7 +105,7 @@ function view_data($dbc, $ticket_id){
 }
 
 //        
-// these functions are not used in this file
+
 function delete_ticket($dbc, $ticket_id){
 	$query = "delete from tickets where ticket_id = $ticket_id";
 	$result = mysqli_query ($dbc, $query);
