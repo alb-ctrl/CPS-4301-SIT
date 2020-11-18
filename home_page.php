@@ -1,5 +1,4 @@
 <?php 
-//checks if user has legged in, if not is directed to login page
 session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
@@ -67,21 +66,21 @@ if (!isset(($_SESSION['id']))){
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar">jjj</span>
-        <span class="icon-bar">nkbknkb</span>
-        <span class="icon-bar">lnllllmpml</span>                        
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="home_page.php">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#" id ="view_tickets">Projects</a></li>
+        <li><a href="#">Settings</a></li>
+        
        
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="logou.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>
@@ -92,28 +91,11 @@ if (!isset(($_SESSION['id']))){
 
 <div class="container-fluid">
   <div class="row">
-    <div class="sidenav col-sm-3 col-lg-2">
-      <nav class="navbar navbar-default navbar-fixed-side">
-        <!-- normal collapsible navbar markup -->
-        
-      <button data-dismiss="modal" data-toggle="modal" data-target="#insertTicket" type="button" class="btn btn-danger btn-lg btn-lg btn-block">Ticket <i class="fa fa-plus pr-2"
-        aria-hidden="true"></i></button>
-      </nav>
-    </div>
-    <div class="col-sm-9 col-lg-10" id="home_page">
+    
+    <div class="col-lg-10" id="home_page" onload="view_tickets();" >
       <!-- your page content -->
-      <h1>Welcome</h1>
       
-      
-      
-      
-      
-
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalInsertTicketForm">Launch
-    Modal Login Form</a>
-</div>
-      
+      <?php include 'view_tickets.php'; ?>
       
     </div>
   </div>
@@ -147,7 +129,10 @@ if (!isset(($_SESSION['id']))){
      <input type="text" name="name" id="name" class="form-control" />
      <br />
      <label>Enter Customer Email</label>
-     <input type="text" name="email" id="email" class="form-control"></input>
+     <input type="email" name="email" id="email" class="form-control"></input>
+     <br />
+     <label>Enter Ticket Number</label>
+     <input type="text" name="number" id="number" class="form-control" />
      <br />
      <label>Enter Customer Phone</label>
      <input type="text" name="phone" id="phone" class="form-control"></input>
