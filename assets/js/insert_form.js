@@ -23,8 +23,13 @@ $('[data-toggle="tooltip"]').tooltip();
     function(data){  
     // $('#insert_form')[0].reset();  
      $('#insertTicket').modal('hide');  
-     //$('#home_page').html(data);  
-    }  
+    // $('#home_page').html(data);
+     view_tickets(' ');  
+    },
+    error: function(xhr, status, error){
+         var errorMessage = xhr.status + ': ' + xhr.statusText
+         alert('Error - ' + errorMessage);
+     }  
    });  
   }  
  });
