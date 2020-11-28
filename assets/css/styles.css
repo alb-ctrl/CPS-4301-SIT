@@ -7,7 +7,6 @@
 	--margins: 60px;
 	--spaces: 10px;
 	--content-spaces: 45px;
-
 }
 
 
@@ -21,7 +20,14 @@
 body{
 	font-family: 'Montserrat', sans-serif;
 	background: #f1f1f1;
+}
 
+#down_contact{
+	padding-bottom: 20%;
+}
+
+html{
+	scroll-behavior: smooth;
 }
 
 img{
@@ -78,7 +84,6 @@ header{
 .logo{
 	margin-top: 15px;
 	padding: 0;
-	
 }
 
 nav{
@@ -101,9 +106,9 @@ nav{
 }
 
 .nav2{
-	background: var(--baccground);
+	background: #404040;
 	height: 65px;
-	color: #000;
+	color: white;
 }
 
 .nav-container{
@@ -118,12 +123,14 @@ nav{
 
  nav .links a{
  	display: inline-block;
- 	padding: 7px 0;
- 	margin-right: 15px;
- 	font-size: 16px;
- 	font-weight: 300;
- 	text-decoration: underline overline;
+ 	padding: 5px 5px;
+ 	margin-right: 20px;
+	margin-bottom: 2px;
+ 	font-size: 14px;
+ 	font-weight: 350;
+	text-decoration: none;
  	border-bottom: 3px solid transparent;
+	text-transform: uppercase;
  	color: inherit;
  }
 
@@ -132,7 +139,7 @@ nav .links a:hover{
 	transition: 0.6s;
 }
 
-.logo, .logo img{height:75px;}
+.logo, .logo img{height: 50px;}
 
 .icon{
 	display: none;
@@ -153,7 +160,7 @@ nav .links a:hover{
 }
 
 
-.texts>h1{font-size: 70px;}
+.texts>h1{font-size: 52px; font-weight: 425;}
 .texts>h2{font-size: 30px; font-weight: 300;}
 
 /*Main*/
@@ -170,7 +177,7 @@ nav .links a:hover{
 
 .container h3{
 	font-size: 34px;
-	color: blue;
+	color: red;
 	margin-bottom: var(--spaces);
 }
 
@@ -187,7 +194,7 @@ nav .links a:hover{
 	margin-top: var(--spaces);
 	width: 150px;
 	height: 3px;
-	background: blue;
+	background: rgba(224,73,87,0.9);
 	margin-bottom: var(--content-spaces);
 }
 
@@ -317,6 +324,12 @@ nav .links a:hover{
 	cursor: pointer;
 }
 
+.links #link-contact{
+	color: white;
+	background-color: rgba(224,73,87,0.9);
+	padding: 5px 5px;
+	border-radius: 5px;
+}
 
 
 
@@ -325,6 +338,7 @@ nav .links a:hover{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	margin: 5px 0;
 }
 
 /*Image Container Styling Edit*/
@@ -333,112 +347,16 @@ nav .links a:hover{
 	box-shadow: 0 0 9px 0 rgba(0,0,0,.8);
 	height: 230px;
 	margin: 12px;
+	border-radius: 4px;
 }
 
 
 
 
-
-
-
-/*Top*/
-
-/*
-.all-contact{
-	max-width: 700px;
-	margin: auto;
-}
-.contact-form{
-	margin: 0; 
-	box-sizing: border-box;
-	box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3);
-	background: #222222;
-	color: #fff;
-	font-family: 'Trispace', sans-serif;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 2em;
-	text-align: center;
-}
-
-
-.contact-form form input{
-	width: 50%;
-	margin-bottom: 20px;
-	border: none;
-	border-bottom: 1px solid rgba(224,73,87,0.9);
-	box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3);
-	color: #fff;
-	outline: 0;
-	background: none;
-	padding: 0.7em;
-}
-
-.contact-form form textarea{
-	width: 80%;
-	margin-bottom: 20px;
-	border: none;
-	border-bottom: 1px solid rgba(224,73,87,0.9);
-	box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.3);
-	color: #fff;
-	outline: 0;
-	padding: 1.5em;
-	background: none;
-}
-
-.contact-form form button{
-	background: rgba(224,73,87,0.9);
-	width: 20%;
-	border: 0;
-	text-transform: uppercase;
-	box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.1);
-	padding: 1em;
-	color: white;
-}
-
-.contact-form form button:hover,
-.contact-form form button:focus{
-	background: white;
-	color:blue;
-	transition: background-color 0.2s ease-out;
-	outline: 0; 
-}
-
-/*Bottom*/
-/*
-.own-contact-info{
-	box-sizing: border-box;
-	box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.5);
-	background: #181818;
-	color: #fff;
-	font-family: 'Trispace', sans-serif;
-	max-width: 1100px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 1em;
-}
-
-.own-contact-info h4,
-.own-contact-info ul, 
-.own-contact-info p{
-	text-align: center;
-	margin: 0 0 1rem 0;
-}
-
-.own-contact-info ul{
-	list-style: none;
-	padding: 0;
-	
-}
-
-.own-contact-info ul li{
-	padding: 0.2em;
-}
-*/
 
 /*Contact Form Container*/
 .contact-form-wrapper{
-	width: 875px;
+	width: 1250px;
 	height: 500px;
 	margin: 50px auto; 
 	background: white;
@@ -451,9 +369,8 @@ nav .links a:hover{
 
 /*Background Image Styling*/
 .info-container{
-	width: 45%;
+	width: 65%;
 	position: relative;
-	
 	background: url(images/contact.jpeg);
 	background-attachment: scroll;
 	background-position: center;
@@ -464,8 +381,8 @@ nav .links a:hover{
 
 /*Contact Form Fields*/
 .contact-container form{
-	width: 38%;
-	padding: 0px 40px;
+	width: 100%;
+	padding: 0px 20px;
 	
 }
 
@@ -515,9 +432,7 @@ nav .links a:hover{
 	padding: 10px;
 	border: none;
 	border-radius: 25px;
-	
 	align-self: flex-end;
-	
 	font-family: "Montserrat";
 	font-size: 14px;
 	font-weight: 500;
@@ -553,15 +468,67 @@ nav .links a:hover{
  }
 
 
-
-
-
-
-
-
-
-.footer{
-	background: 
+.inner-footer{
+	margin: 0;
+	padding: 0;
+	background-color: gray
 }
+
+.social-links{
+	display: flex;
+}
+
+.social-links ul{
+	padding: 15px 15px;
+	display: flex;
+	width: 580px;
+	height: 75px;
+	margin: auto;
+	text-align: center;
+}
+
+.social-items{
+	list-style: none;
+	padding: 8px 55px;
+}
+
+.quick-links p{
+	display: flex;
+	width: 10px;
+	height: 40px;
+	margin: auto;
+	list-style: none;
+	text-decoration: none;
+	padding: 0px 20px;
+	font-size: 16px;
+	color: white;
+}
+
+.outer-footer{
+	padding: 8px;
+	text-align: left;
+	width: 50%;
+	float: left;
+	color: white;
+	font-size: 14px;
+	background-color: #3f3f3f;
+}
+
+.cred-footer{
+	padding: 8px;
+	float: right;
+	width: 50%;
+	text-align: right;
+	color: white;
+	font-size: 14px;
+	background-color: #3f3f3f;
+}
+
+
+
+
+
+
+
 
 
