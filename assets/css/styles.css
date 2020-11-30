@@ -42,7 +42,7 @@ img{
 header{
 	width: 100%;
 	height: 600px;
-	background: url(./images/bg.gif);
+	background: url(assets/img/images/bg.gif);
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
@@ -250,7 +250,7 @@ nav .links a:hover{
 }
 
 .about{
-	background: url(images/bg.gif);
+	background: url(assets/img/images/bg.gif);
 	height: auto;
 }
 
@@ -338,7 +338,7 @@ nav .links a:hover{
 .info-container{
 	width: 65%;
 	position: relative;
-	background: url(images/contact.jpeg);
+	background: url(assets/img/images/contact.jpeg);
 	background-attachment: scroll;
 	background-position: center;
 	background-size: cover;
