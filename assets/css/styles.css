@@ -249,10 +249,6 @@ nav .links a:hover{
 	padding: var(--spaces) 0;	
 }
 
-.about{
-	background: url(assets/img/images/bg.gif);
-	height: auto;
-}
 
 .services{
 	display: flex;
