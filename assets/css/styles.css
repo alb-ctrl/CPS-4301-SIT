@@ -177,7 +177,7 @@ nav .links a:hover{
 
 
 
-.services{
+.servs{
 	width: 60%;
 	box-shadow: 0 0 7px 0 rgba(0,0,0,.5);
 	overflow: hidden;
@@ -236,7 +236,7 @@ nav .links a:hover{
 
 /*Image Size Edit*/
 
-.services img{
+.servs img{
 	width: 402px;
 	height: 261px;
 	object-fit: fill;
@@ -250,7 +250,7 @@ nav .links a:hover{
 }
 
 
-.services{
+.servs{
 	display: flex;
 	color: #000;
 	justify-content: space-around;
@@ -305,7 +305,7 @@ nav .links a:hover{
 }
 
 /*Image Container Styling Edit*/
-.contain-serv .services{
+.contain-serv .servs{
 	width: 28.5%;
 	box-shadow: 0 0 9px 0 rgba(0,0,0,.8);
 	height: 230px;
