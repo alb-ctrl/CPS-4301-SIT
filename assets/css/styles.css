@@ -216,7 +216,7 @@ nav .links a:hover{
 	padding: 65px;
 	background: rgba(224,73,87,0.9);
 	transform: translateY(100%);
-	transition: all 0.35s ease-in;
+	transition: all 0.35s ease;
 }
 
 
@@ -232,7 +232,7 @@ nav .links a:hover{
 /*Image Size Edit*/
 
 .servs img{
-	width: 407px;
+	width: 410px;
 	height: 261px;
 	object-fit: fill;
 }
