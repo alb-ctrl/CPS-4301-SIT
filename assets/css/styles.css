@@ -215,11 +215,7 @@ nav .links a:hover{
 	line-height: 1.1em;
 	padding: 65px;
 	background: rgba(224,73,87,0.9);
-	
 	transform: translateY(100%);
-	
-
-	
 	transition: all 0.35s ease-in;
 }
 
@@ -305,7 +301,7 @@ nav .links a:hover{
 
 /*Image Container Styling Edit*/
 .contain-serv .servs{
-	width: 28.5%;
+	width: 28%;
 	box-shadow: 0 0 9px 0 rgba(0,0,0,.8);
 	height: 230px;
 	margin: 12px;
