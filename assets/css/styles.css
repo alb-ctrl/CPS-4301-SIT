@@ -235,6 +235,7 @@ nav .links a:hover{
 	width: 410px;
 	height: 261px;
 	object-fit: fill;
+	
 }
 
 
@@ -304,7 +305,7 @@ nav .links a:hover{
 	width: 28%;
 	box-shadow: 0 0 9px 0 rgba(0,0,0,.8);
 	height: 230px;
-	margin: 12px;
+	margin: 9px;
 	border-radius: 4px;
 }
 
