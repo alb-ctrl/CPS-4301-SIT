@@ -63,13 +63,14 @@ require ("db_config.php");
 		<div class="filter-group">
 			<label>Status</label> 
 			<select name="ticket_status" id="ticket_status" class="form-control">
-                                <option>Any</option>
-                                <option value="New">New</option>  
+                                <option value="Any" >Any</option>
+                                <option value="New">New</option> 
+                                <?php echo "<option value='".$_SESSION['id']."'>My Tickets</option> ";?> 
       							<option value="Work_In _Progress">Work In Progress</option>
       							<option value="On_Hold">On Hold</option>
       							<option value="Completed">Completed</option>
       							<option value="Canceled">Canceled</option>
-                            </select>
+            </select>
 		</div>
 		<span class="filter-icon"><i class="fa fa-filter"></i></span> 
 	</div>
@@ -82,11 +83,12 @@ require ("db_config.php");
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Customer</th>
+                        <th style="width:20%">Customer</th>
                         <th>Subject</th>
 						
-                        <th>Status</th>						
-                        <th>Cost</th>
+                        <th style="width:15%">Status</th>						
+                        <th style="width:10%">Cost</th>
+                        <th style="width:10%">scheduled for</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -129,6 +131,7 @@ require ("db_config.php");
     echo '
                         <td><span class="status text-'.$res.'">&bull;</span>'.str_replace('_', ' ', $row['status'])  . '</td>
                         <td>$'. $row['cost'] .'</td>
+                        <td>'. $row['scheduled'] .'</td>
                          <td><a href="#" id='. $row["ticket_id"] .' class="view view_data" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>';
      	

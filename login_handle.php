@@ -81,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 		$_SESSION['id'] = $row['id'];
 		$_SESSION['name'] = $row['name'];
+		$_SESSION['role'] = $row['role'];
 		
 		mysqli_free_result($run);
 		//header('LOCATION:home_page.php');
