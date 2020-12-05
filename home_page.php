@@ -3,99 +3,40 @@ session_start();
 if (!isset(($_SESSION['id']))){
 	header('LOCATION:Login.html');
 	die (); 
-} ?>
+} 
 
-<!DOCTYPE html>
-<html lang="en">
-
-
-	<head>
-	
-  		<meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home</title>
-        
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-        
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/navbar-fixed-side.css">
-        <link rel="stylesheet" href="assets/css/ticket_table.css">
-        
-       <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-     
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="home_page.php">Home</a></li>
-        <li><a href="#">Settings</a></li>
-        
-       
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="logou.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
+require "assets/header.html";
+?>
 
 
 
 <div class="container-fluid">
   <div class="row">
     
-    <div class="col-lg-10" id="home_page" onload="view_tickets();" >
+    <div class="col-lg-12" id="home_page" onload="view_tickets();" >
       <!-- your page content -->
       
-      <?php include 'view_tickets.php'; ?>
+      <?php include 'view_tickets.php';
+      		
+	$us = view_users($dbc);
+	
+function view_users($dbc){
+	$output = '';
+	$query = "select name, id from users ";
+	$result = mysqli_query($dbc, $query);
+	if ($result){
+		$output.= "<select name ='users' class='form-control' >
+					<option value=''></option>";
+		 while($row = mysqli_fetch_array($result)) {
+		 	
+		 		$output.= "<option value='".$row['id']."'>".$row['name']."</option>";
+		 }
+		 $output.= "</select>";
+	
+	}
+	return $output;
+}
+       ?>
       
     </div>
   </div>
@@ -139,6 +80,9 @@ if (!isset(($_SESSION['id']))){
      <br />
      <label>Enter Subject</label>
      <input type="text" name="subject" id="subject" class="form-control"></input>
+     <br />
+     <label>Assign to</label>
+     <?php echo $us ?>
      <br />
      <label>Enter Schedule</label>
      <input type="date" name="schedule" id="schedule" class="form-control"></input>
