@@ -36,10 +36,11 @@ $('[data-toggle="tooltip"]').tooltip();
  
  $(document).on('click', '#view_tickets', function(){
   //$('#dataModal').modal();
- view_tickets(' ');
+ view_tickets(' ',0);
  });
 
-function view_tickets(q){
+//va has to be 0 for the status filter to work
+function view_tickets(q, va){
   $.ajax({
    url:"view_tickets.php",
    method:"POST",
@@ -47,9 +48,13 @@ function view_tickets(q){
 
    success:function(data){
     $('#home_page').html(data);
+    if (va !=0){
+    	$("#ticket_status").val(va);
+    }
     
    }
   });
+  
 
 }
 
@@ -64,7 +69,7 @@ $.ajax({
    function(data){  
 
      //$('#home_page').html(data); 
-     $('#dataModal').modal('hide'); view_tickets(' ');
+     $('#dataModal').modal('hide'); view_tickets(' ', 0);
     }    
   
   });
@@ -82,7 +87,7 @@ $.ajax({
     
      //$('#home_page').html(data);  
      $('#dataModal').modal('hide'); 
-     view_tickets(' ');
+     view_tickets(' ', 0);
     }    
   
   });
@@ -113,10 +118,23 @@ $(document).on('change', '#ticket_status',function(){
   var x = $( "#ticket_status" ).val();
   
   var query = "where status ='"+x+"'";
+  //so in order to know if the value is to filter from status or check tickets assigned to you
+  //we are going to asume there will be less than 99 users
+  //if there are less than 99 users we will create a query to check who is assigned to it
+  //if more than 99 this needs refactoring
+  if (x.length < 3){
+  	query ="where assigened_to ='"+x+"'";
+  }
+  //because any is also <=3 we will check if the value of x is Any
+  //if the value of x is Any we will pass an empty query and search for all 
   if (x==="Any"){
 	query="";  
   }
-  view_tickets(query);
+  
+  view_tickets(query, x);
+  //$("#ticket_status option[value='New']").attr('selected', 'selected');
+  //$("#ticket_status").val('On_Hold');
+  //alert(query);
  
  });
  
@@ -125,7 +143,7 @@ $(document).on('change', '#ticket_status',function(){
   var x = $("#search_ticket_name").val();
   
   var query = "where name like '%"+x+"%'";
-  view_tickets(query);
+  view_tickets(query, 0);
  
  });
 
