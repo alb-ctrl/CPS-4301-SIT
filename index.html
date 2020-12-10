@@ -207,7 +207,7 @@
 				
 				<h3><i>Contact Us</i><br/><br/></h3>
 			
-					<form action="./login_handle.php" method="POST">
+					<form id="contact_form" >
 					<p>
 						<label for="fullname">Name<br/></label>
 						<input type="text" name="name" id="name" class="form-control" required>
@@ -269,5 +269,37 @@
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/contact_error_handle.js"></script>
+	<script>
+  		$(document).ready(function(){
+  		$(document).on("submit", '#contact_form', function(event){
+
+    		event.preventDefault();  
+    		if($('#email').val() == "")  
+    		{  
+     			alert("email is required");  
+    		}  
+
+    		else  
+    		{  
+     			$.ajax({  
+      				url:"insert_ticket_contact.php",  
+      				method:"POST",  
+      				data:$('#contact_form').serialize(),  
+
+      				success:function(data){  
+      					$('#contact_form')[0].reset();  
+      					// $('#insertTicket').modal('hide');  
+      					// $('#home_page').html(data);
+       					alert("Thank you for contacting us"); 
+      				},
+      				error: function(xhr, status, error){
+           				var errorMessage = xhr.status + ': ' + xhr.statusText
+           				alert('Error - ' + errorMessage);
+       				}  
+     			});  
+    		}  
+   		});
+  		}); 
+  	</script>
 </body>
 </html>
