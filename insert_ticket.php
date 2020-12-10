@@ -60,6 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$query = $query . ",ticket_number"; 
 		$values = $values . ", '$number' ";
 	}
+	if (!empty($_POST['users'])){
+		$use = mysqli_real_escape_string($dbc, $_POST["users"]);
+		$query = $query . ", assigened_to";
+		$values = $values . ", '$use' "; 
+	}
+	
 
 	if (!empty ($_POST['schedule'])){
 		$schedule = mysqli_real_escape_string($dbc, $_POST["schedule"]);
