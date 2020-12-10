@@ -22,12 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$email = mysqli_real_escape_string($dbc, $_POST["email"]);
 		$values = $values . " '$email' ";
 	}
+	
+	if (!empty($_POST['name'])){
+		$name = mysqli_real_escape_string($dbc, $_POST["name"]);
+		$query = $query . ",name"; 
+		$values = $values . ", '$name' ";
+	}
 
 	
 	
 	$values = $values . ")";
 	$query = $query . ") values" . $values;
-	echo $query;
 	
 	if (mysqli_query($dbc, $query)){
 		$last_id = mysqli_insert_id($dbc);
