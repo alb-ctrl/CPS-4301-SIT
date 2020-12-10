@@ -28,8 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	}
 	
+function view_users($dbc, $user_id){
+	$output = '';
+	$query = "select name, id from users ";
+	$result = mysqli_query($dbc, $query);
+	if ($result){
+		$output.= "<select name ='users' class='form-control' >
+					<option value=''></option>";
+		 while($row = mysqli_fetch_array($result)) {
+		 	if ($user_id == $row['id']){
+		 		$output.= "<option value='".$row['id']."' selected>".$row['name']."</option>";
+		 	}
+		 	else
+		 		$output.= "<option value='".$row['id']."'>".$row['name']."</option>";
+		 }
+		 $output.= "</select>";
+	
+	}
+	return $output;
+}
+	
 function view_data($dbc, $ticket_id){
-
+	
 	 $output = '';
 	
 	$query = "select * from Vtickets where ticket_id =". $ticket_id;
@@ -41,6 +61,7 @@ function view_data($dbc, $ticket_id){
            <table class="table table-bordered">';
     
     while($row = mysqli_fetch_array($result)) {
+    	$us = view_users($dbc, $row['assigened_to']);
     	$output .= "<tr>
     		<td width ='30%'><label>Name</label></td>
     		<td width ='70%'><input type='text' name='name' id='name' class='form-control' value='".$row['name']."' /></td>
@@ -52,6 +73,10 @@ function view_data($dbc, $ticket_id){
     	<tr>
     		<td width ='30%'><label>Subject</label></td>
     		<td width ='70%'><input type='text' name='subject' id='subject' class='form-control' value='".$row['subject']."' ></input></td>
+    	</tr>
+    	<tr>
+    		<td width ='30%'><label>Assigned to</label></td>
+    		<td width ='70%'>$us</td>
     	</tr>
     	<tr>
     		<td width ='30%'><label>Status</label></td>
