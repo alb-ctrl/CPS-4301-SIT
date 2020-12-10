@@ -43,7 +43,7 @@ require ("db_config.php");
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>Ticket <b>Details</b></h2>
+                        <h2>Ticket Details</h2>
                     </div>
                    
                 </div>
@@ -88,7 +88,7 @@ require ("db_config.php");
 						
                         <th style="width:15%">Status</th>						
                         <th style="width:10%">Cost</th>
-                        <th style="width:10%">scheduled for</th>
+                        <th style="width:10%">Scheduled</th>
                         <th>Action</th>
                     </tr>
                 </thead>
