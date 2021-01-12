@@ -38,7 +38,7 @@ require ("db_config.php");
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>User <b>Details</b></h2>
+                        <h2>User Details</h2>
                     </div>
                    
                 </div>
@@ -74,7 +74,7 @@ require ("db_config.php");
   
     
     echo '
-                         <td><a href="#" id='. $row["id"] .' class="view view_data" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
+                         <td><a href="#" id='. $row["id"] .' class="view view_data" title="Edit User" data-dismiss="modal" data-toggle="modal"  data-target="#editUser"><i class="material-icons">&#xE5C8;</i></a></td>
                     </tr>';
      	
      	
@@ -128,6 +128,63 @@ require ("db_config.php");
    						});  
   					}  
  			});
+ 			
+ 			$(document).on('click', '.view_data', function(){
+ 				var x = $(this).attr("id");
+ 				$('#usr_id').val(x);
+ 				$(".delete_user").attr('id', x);
+ 			});
+ 			
+ 			$(document).on("click",'#update_user' , function(event){
+  					event.preventDefault();
+  					var pass = $('#new_password1').val();
+  					var usr_id = $(this).attr("id");
+  					if($('#new_password1').val() == "")  {  
+   						alert("password is required");  
+  					}
+  					if ($('#new_password1').val() !=$('#new_password2').val()){
+  						alert("passwords do not match");
+  					}
+  				
+  					else {  
+   						$.ajax({  
+   						
+    						url:"edit_user.php",  
+    						method:"POST",  
+    						data:$('#Edit_User').serialize(), 
+    						success: function(data){  
+    							// $('#insert_User')[0].reset();  
+     							$('#editUser').modal('hide');  
+    							$('.clearfix').html(data);
+     						
+    						},
+    						error: function(xhr, status, error){
+         						var errorMessage = xhr.status + ': ' + xhr.statusText
+         						alert('Error - ' + errorMessage);
+     						}  
+   						});  
+  					}  
+  					
+ 			});
+ 			
+ 			$(document).on("click",'.delete_user' ,function(event){
+				var delete_user = $(this).attr("id");
+				event.preventDefault(); 
+				$.ajax({
+   					url:"delete_user.php",
+   					method:"POST",
+   					data:{delete_user:delete_user},
+   					success:
+   					function(data){  
+
+     					//$('#home_page').html(data); 
+     					$('#editUser').modal('hide');
+     					location.reload();
+    				}    
+  
+  				});
+  
+ 			});
 		});
         </script>
         
@@ -149,6 +206,7 @@ require ("db_config.php");
    </div>
    <div class="modal-body">
     <form method="post" id="insert_User">
+     
      <label>Enter User Name</label>
      <input type="text" name="name" id="name" class="form-control" />
      <br />
@@ -175,7 +233,34 @@ require ("db_config.php");
  </div>
 </div>
 
+<div id="editUser" class="modal fade">
+	<div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Edit User</h4>
+   </div>
+   <div class="modal-body">
+    <form method="post" id="Edit_User">
+    <input type="hidden" name="usr_id" id="usr_id" value="" >
+     <label>Enter New User Password</label>
+     <input type="password" name="new_password1" id="new_password1" class="form-control" required></input>
+     <br />
+     <label>Re-Enter New User Password</label>
+     <input type="password" name="new_password2" id="new_password2" class="form-control" required></input>
+     <br />
+     <input type="submit" name="Update" id="update_user" value="Update" class="btn btn-success" />
 
+    </form>
+    <br>
+    <input type="submit" class="btn btn-danger delete_user" value="Delete" name="delete" id=""  data-dismiss="modal" /><br>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
 
 <div id="dataModal" class="modal fade">
  <div class="modal-dialog">

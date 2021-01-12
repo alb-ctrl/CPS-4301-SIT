@@ -17,14 +17,15 @@ require ("db_config.php");
 	mysqli_set_charset($dbc, 'utf8');
 	
 	
-	delete_ticket($dbc, $_POST['delete_ticket']);
+	delete_ticket($dbc, $_POST['delete_user']);
 	mysqli_close($dbc);
 
 }
 
 function delete_ticket($dbc, $ticket_id){
-	$query = "delete from tickets where ticket_id = $ticket_id";
+	$query = "delete from users where id = $ticket_id";
 	$result = mysqli_query ($dbc, $query);
+	echo "success";
 
 }
 
