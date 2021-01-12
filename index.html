@@ -2,7 +2,7 @@
 <html oncontextmenu="return false">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=500, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Chris Network Solutions</title>
 	<meta name = "Description" content = "CHRIS NETWORK SOLUTIONS • Remote Support • Virus Removal's • PC/Printer Setup • Computer Building • Data Transfer Services •">
@@ -207,7 +207,7 @@
 				
 				<h3><i>Contact Us</i><br/><br/></h3>
 			
-					<form id="contact_form" >
+					<form action="./login_handle.php" method="POST">
 					<p>
 						<label for="fullname">Name<br/></label>
 						<input type="text" name="name" id="name" class="form-control" required>
@@ -269,37 +269,5 @@
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/contact_error_handle.js"></script>
-	<script>
-  		$(document).ready(function(){
-  		$(document).on("submit", '#contact_form', function(event){
-
-    		event.preventDefault();  
-    		if($('#email').val() == "")  
-    		{  
-     			alert("email is required");  
-    		}  
-
-    		else  
-    		{  
-     			$.ajax({  
-      				url:"insert_ticket_contact.php",  
-      				method:"POST",  
-      				data:$('#contact_form').serialize(),  
-
-      				success:function(data){  
-      					$('#contact_form')[0].reset();  
-      					// $('#insertTicket').modal('hide');  
-      					// $('#home_page').html(data);
-       					alert("Thank you for contacting us"); 
-      				},
-      				error: function(xhr, status, error){
-           				var errorMessage = xhr.status + ': ' + xhr.statusText
-           				alert('Error - ' + errorMessage);
-       				}  
-     			});  
-    		}  
-   		});
-  		}); 
-  	</script>
 </body>
 </html>
